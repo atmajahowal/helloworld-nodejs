@@ -16,7 +16,7 @@ jobs:
           host: 13.58.245.98
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-
+          port: 22
           script: |
             cd /home/ubuntu/helloworld-nodejs
             git pull origin main
