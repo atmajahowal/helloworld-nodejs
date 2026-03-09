@@ -10,15 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Deploy to EC2
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 13.58.245.98
-          username: ubuntu
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          password: ${{ secrets.EC2_PASS }}
           port: 22
           script: |
+            cd /home/ubuntu/helloworld-nodejs || git clone https://github.com/atmajahowal/helloworld-nodejs.git
             cd /home/ubuntu/helloworld-nodejs
             git pull origin main
             npm install
-            pm2 restart all
+            pm2 restart all || pm2 start app.js
