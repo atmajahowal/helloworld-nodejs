@@ -8,7 +8,7 @@ app.use(express.static(path.join(__dirname,"public")));
 app.get("/api/status",(req,res)=>{
 
 res.json({
-status:"Backend running successfully 🚀"
+status:"CI/CD deployment successful 🚀"
 });
 
 });
