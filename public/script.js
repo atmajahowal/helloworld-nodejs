@@ -1,9 +1,11 @@
-function getMessage(){
+function checkBackend(){
 
-fetch("/api")
-.then(res => res.json())
+fetch("/api/status")
+.then(response => response.json())
 .then(data => {
- document.getElementById("message").innerText = data.message;
+
+document.getElementById("statusMessage").innerText = data.status;
+
 });
 
 }
